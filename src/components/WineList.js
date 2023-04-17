@@ -1,25 +1,25 @@
-import { useState } from "react"
+import { useState } from "react";
+import WineCard from "./WineCard";
 
 export default function WineList() {
-  const[theWines, setTheWines] = useState()
+  const [theWines, setTheWines] = useState();
 
   const getWines = () => {
-    fetch('https://api.sampleapis.com/wines/reds')
-      .then(response => response.json())
-      .then(data => setTheWines(data))
-      .catch (alert)
-  }
+    fetch("https://api.sampleapis.com/wines/reds")
+      .then((response) => response.json())
+      .then((data) => setTheWines(data))
+      .catch(alert);
+  };
   return (
-  <section className="wine-list">
-    {(!theWines)
-    ?<button onClick={getWines}>Get Wine List</button>
-    : theWines.map(wine => (
-      <div key={wine.id} classsName="wine-card">
-      <h2>{wine.wine} </h2>
-      <img src={wine.image} alt=""/>
-      </div>
-    ))
-    }
-  </section>
-  )
+    <section className="wine-list">
+      {(!theWines) ? (
+        <button onClick={getWines}>Get Wine List</button>
+      ) : (
+        theWines.map((wine) => (
+          <WineCard key={wine.id} classsName="wine-card"/>
+
+        ))
+      )}
+    </section>
+  );
 }
